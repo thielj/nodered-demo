@@ -1,9 +1,19 @@
 FROM nodered/node-red:latest-18-minimal
 
+# Override default files
 WORKDIR /data
-COPY package.json flows.json /data/
+COPY package.json flows.json flows_cred.json /data/
 
-RUN npm install --unsafe-perm --no-update-notifier --no-fund --only=production
+# Install packages
+ENV NODE_ENV production
+RUN npm install --unsafe-perm --no-update-notifier --no-audit --no-fund --omit=dev
 
-WORKDIR /usr/src/node-red
+# Use default settings, but enable projects / git integration:
 #COPY settings.js /data/
+ENV NODE_RED_ENABLE_PROJECTS='true'
+
+# Restore workdir the ENTRYPOINT expects this
+WORKDIR /usr/src/node-red
+
+LABEL org.label-schema.vcs-type="Git" \
+      org.label-schema.vcs-url="https://github.com/thielj/nodered-demo"
