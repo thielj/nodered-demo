@@ -70,6 +70,12 @@ To remove the image and clean up any cached layers, use:
 sudo docker image rm nodered-demo
 ```
 
+If you have cloned the repository, build it from the clone instead:
+
+```
+docker build -t nodered-demo .
+```
+
 ## Using docker-compose.yml to build and run this app
 
 The included `docker-compose.yml` makes some assumptions about your setup,
