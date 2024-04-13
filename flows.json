@@ -1,0 +1,88 @@
+[
+    {
+        "id": "2142850afa9fb6cf",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2a5accba18c014cb",
+        "type": "group",
+        "z": "2142850afa9fb6cf",
+        "name": "Run a local process and use the output as payload",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "8e75a4ce64d8d031",
+            "9e75464d24b4cf91",
+            "299dec1794d3a950"
+        ],
+        "x": 54,
+        "y": 391.5,
+        "w": 672,
+        "h": 97
+    },
+    {
+        "id": "8e75a4ce64d8d031",
+        "type": "exec",
+        "z": "2142850afa9fb6cf",
+        "g": "2a5accba18c014cb",
+        "command": "/usr/bin/uptime",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "299dec1794d3a950"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9e75464d24b4cf91",
+        "type": "inject",
+        "z": "2142850afa9fb6cf",
+        "g": "2a5accba18c014cb",
+        "name": "GO!",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "8e75a4ce64d8d031"
+            ]
+        ]
+    },
+    {
+        "id": "299dec1794d3a950",
+        "type": "debug",
+        "z": "2142850afa9fb6cf",
+        "g": "2a5accba18c014cb",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 440,
+        "wires": []
+    }
+]
