@@ -8,6 +8,8 @@ services:
 
   nodered-demo:
     image: "ghcr.io/thielj/nodered-demo"
+    #build: "https://github.com/thielj/nodered-demo.git#main"
+    build: .
     user: "1000:1000"
     expose: [ 1880 ]
     #ports: [ "127.0.0.1:1880:1880" ] # only necessary if not reverse-proxied

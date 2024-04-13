@@ -1,29 +1,29 @@
 # nodered-demo
 
-A containerized Node-RED app, demonstrating a few simple features (APIs, 
-MQTT message broker, HTTP requests, XML parsing, cron scheduler, inject 
-and debug nodes, ...). 
+A containerized Node-RED app, demonstrating a few simple features (APIs,
+MQTT message broker, HTTP requests, XML parsing, cron scheduler, inject
+and debug nodes, ...).
 
 Note that this demo is only using public resources and hasn't set
 a password to protect credentials. Please keep this in mind if you add
-any crdentials later. 
+any crdentials later.
 
 ## Using an existing Node-RED instance
 
-If you have a running Node-RED instance with the "Projects" feature enabled, 
+If you have a running Node-RED instance with the "Projects" feature enabled,
 simply clone this repository and hit "Deploy" in the upper right corner.
 
-## Using docker to build and run this app
+## Using Dockerfile to build and run this app
 
 This project includes a `Dockerfile` with build instructions. Chances are, all you
-need to do is: 
+need to do is:
 
 ```
 docker build -t nodered-demo https://github.com/thielj/nodered-demo.git#main
 sudo docker run -it --rm -p 1080:1080 nodered-demo
 ```
 
-After the build finishes, running the container shoul produce an output similar to this:
+After the build finishes, running the container should produce an output similar to this:
 
 ```
 13 Apr 18:25:04 - [info]
@@ -63,9 +63,45 @@ file using your chosen key the next time you deploy a change.
 If this is your local docker setup, you can now access the Node-RED GUI
 at http://127.0.0.1:1880/
 
-To stop the container, hit `CTRL-C`. It should be removed automatically. 
+To stop the container, hit `CTRL-C`. It should be removed automatically.
 To remove the image and clean up any cached layers, use:
 
 ```
 sudo docker image rm nodered-demo
+```
+
+## Using docker-compose.yml to build and run this app
+
+The included `docker-compose.yml` makes some assumptions about your setup,
+most importantly an existing docker network named `proxy`. It also adds
+a few label useful for running this with the Traefik router/proxy. YMMV.
+
+Once you sorted this out, it should be sufficient to simply execute the
+following from within the nodered-demo folder:
+
+```
+sudo docker compose up -d
+```
+
+This should pull a pre-built image from GitHub Packages and spin up a
+container named `nodered-demo-nodered-demo-1`.
+
+To view logs, run nodered-demo-nodered-demo-1
+
+```
+sudo docker logs nodered
+```
+
+To stop the container, run:
+
+```
+sudo docker compose down
+```
+
+
+If you want to build your own image, try this. It uses the above mentioned
+`Dockerfile` and should give you a similar result.
+
+```
+docker compose build
 ```
