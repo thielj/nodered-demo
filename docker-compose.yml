@@ -7,7 +7,7 @@
 services:
 
   nodered-demo:
-    image: "ghcr.io/thielj/nodered-demo"
+    #image: "ghcr.io/thielj/nodered-demo"
     #build: "https://github.com/thielj/nodered-demo.git#main"
     build: .
     user: "1000:1000"

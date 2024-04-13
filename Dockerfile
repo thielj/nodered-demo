@@ -15,6 +15,4 @@ ENV NODE_RED_ENABLE_PROJECTS true
 # Restore workdir the ENTRYPOINT expects this
 WORKDIR /usr/src/node-red
 
-LABEL org.opencontainers.image.description="A containerized Node-RED app demo" \
-      org.label-schema.vcs-type="Git" \
-      org.label-schema.vcs-url="https://github.com/thielj/nodered-demo"
+LABEL org.opencontainers.image.description="A containerized Node-RED app demo"
