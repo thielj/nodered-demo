@@ -2,7 +2,7 @@
     {
         "id": "2142850afa9fb6cf",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Demos",
         "disabled": false,
         "info": "",
         "env": []
@@ -11,19 +11,118 @@
         "id": "2a5accba18c014cb",
         "type": "group",
         "z": "2142850afa9fb6cf",
-        "name": "Run a local process and use the output as payload",
+        "name": "Example: run a local process and use the output as payload",
         "style": {
             "label": true
         },
         "nodes": [
             "8e75a4ce64d8d031",
             "9e75464d24b4cf91",
-            "299dec1794d3a950"
+            "299dec1794d3a950",
+            "8759eadbc946630b",
+            "de4a7195935a83ae"
         ],
         "x": 54,
-        "y": 391.5,
-        "w": 672,
-        "h": 97
+        "y": 219,
+        "w": 792,
+        "h": 122
+    },
+    {
+        "id": "c81f0979b3ea652e",
+        "type": "group",
+        "z": "2142850afa9fb6cf",
+        "name": "Example: MQTT Message Broker",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ab25dd6e089242e9",
+            "3276dccfda81a261",
+            "a7dbde28aa56d69a",
+            "e724c4e8d5c30c99",
+            "fb853add08419581",
+            "dfd474249e3eb632",
+            "ca1233e3a6a41af4",
+            "728e8e43a6bd5863",
+            "aedf67e87be4d8e6",
+            "1fa8761187411e22",
+            "8e2aa9c9acb8561d",
+            "cbcf98da4bf4b45e",
+            "16f2b4c4ca0dd8b1",
+            "78c3d7bba710cbae"
+        ],
+        "x": 54,
+        "y": 359,
+        "w": 792,
+        "h": 462
+    },
+    {
+        "id": "c12567373ad6819d",
+        "type": "group",
+        "z": "2142850afa9fb6cf",
+        "name": "Example: retrieve the French inflation index, transform XML data to JSON",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "47dd6b6e12c7c75a",
+            "56effb5b94c453c2",
+            "b697979e0e7a738d",
+            "f0c8efece3d3b237",
+            "e5e4b5879099765a",
+            "22dc37b81fd4fa13",
+            "0191be0778224658",
+            "4bb580419389ee62"
+        ],
+        "x": 54,
+        "y": 839,
+        "w": 792,
+        "h": 122
+    },
+    {
+        "id": "bb737c644a25f6d3",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "66bd547318db9423",
+        "type": "tls-config",
+        "name": "default",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "mqtt.datagrid.de",
+        "verifyservercert": true,
+        "alpnprotocol": ""
     },
     {
         "id": "8e75a4ce64d8d031",
@@ -38,13 +137,16 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 360,
-        "y": 440,
+        "x": 500,
+        "y": 280,
         "wires": [
+            [
+                "299dec1794d3a950",
+                "de4a7195935a83ae"
+            ],
             [
                 "299dec1794d3a950"
             ],
-            [],
             []
         ]
     },
@@ -60,8 +162,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
-        "y": 440,
+        "x": 190,
+        "y": 300,
         "wires": [
             [
                 "8e75a4ce64d8d031"
@@ -73,16 +175,556 @@
         "type": "debug",
         "z": "2142850afa9fb6cf",
         "g": "2a5accba18c014cb",
-        "name": "debug 5",
+        "name": "[uptime]",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 620,
-        "y": 440,
+        "x": 740,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8759eadbc946630b",
+        "type": "http in",
+        "z": "2142850afa9fb6cf",
+        "g": "2a5accba18c014cb",
+        "name": "",
+        "url": "/api/uptime",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "8e75a4ce64d8d031"
+            ]
+        ]
+    },
+    {
+        "id": "de4a7195935a83ae",
+        "type": "http response",
+        "z": "2142850afa9fb6cf",
+        "g": "2a5accba18c014cb",
+        "name": "200 OK",
+        "statusCode": "",
+        "headers": {
+            "content-type": "text/plain"
+        },
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ab25dd6e089242e9",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "I've disabled the timer by default... Just hit the button to the left of \"GO!\" to \"inject\" an event manually",
+        "info": "",
+        "x": 420,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "3276dccfda81a261",
+        "type": "mqtt out",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "",
+        "topic": "nodered-demo/test",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bb737c644a25f6d3",
+        "x": 510,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e724c4e8d5c30c99",
+        "type": "mqtt in",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "",
+        "topic": "nodered-demo/test/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bb737c644a25f6d3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 510,
+        "y": 460,
+        "wires": [
+            [
+                "fb853add08419581"
+            ]
+        ]
+    },
+    {
+        "id": "fb853add08419581",
+        "type": "debug",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "[mqtt]",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "{\t   \"topic\": topic,\t   \"payload\": payload,\t   \"retained\": retain\t}",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "dfd474249e3eb632",
+        "type": "inject",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "GO!",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 600,
+        "wires": [
+            [
+                "3276dccfda81a261"
+            ]
+        ]
+    },
+    {
+        "id": "ca1233e3a6a41af4",
+        "type": "http in",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "",
+        "url": "/api/publish/:topic",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 720,
+        "wires": [
+            [
+                "cbcf98da4bf4b45e"
+            ]
+        ]
+    },
+    {
+        "id": "728e8e43a6bd5863",
+        "type": "http response",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 540,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "aedf67e87be4d8e6",
+        "type": "http response",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "ERR 400",
+        "statusCode": "400",
+        "headers": {},
+        "x": 540,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "1fa8761187411e22",
+        "type": "mqtt out",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "nodered-demo/test/#",
+        "topic": "",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bb737c644a25f6d3",
+        "x": 720,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "8e2aa9c9acb8561d",
+        "type": "function",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": ".topic",
+        "func": "msg.topic = \"nodered-demo/test/\" + msg.req.params.topic.trim();\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 700,
+        "wires": [
+            [
+                "1fa8761187411e22"
+            ]
+        ]
+    },
+    {
+        "id": "cbcf98da4bf4b45e",
+        "type": "switch",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "topic?",
+        "property": "req.params.topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\w+",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 720,
+        "wires": [
+            [
+                "8e2aa9c9acb8561d",
+                "728e8e43a6bd5863"
+            ],
+            [
+                "aedf67e87be4d8e6"
+            ]
+        ]
+    },
+    {
+        "id": "16f2b4c4ca0dd8b1",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "POST(!) the raw value to e.g. /api/publish/hello",
+        "info": "",
+        "x": 250,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a7dbde28aa56d69a",
+        "type": "cronplus",
+        "z": "2142850afa9fb6cf",
+        "d": true,
+        "g": "c81f0979b3ea652e",
+        "name": "Every 30 minutes",
+        "outputField": "payload",
+        "timeZone": "Europe/London",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0 */30 1 * * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 210,
+        "y": 560,
+        "wires": [
+            [
+                "3276dccfda81a261"
+            ]
+        ]
+    },
+    {
+        "id": "78c3d7bba710cbae",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "g": "c81f0979b3ea652e",
+        "name": "The message broker listener - check the debug window for the output of the [mqtt] node",
+        "info": "",
+        "x": 380,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "47dd6b6e12c7c75a",
+        "type": "http request",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "BDM",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001759971?lastNObservations=12",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 350,
+        "y": 880,
+        "wires": [
+            [
+                "e5e4b5879099765a",
+                "0191be0778224658"
+            ]
+        ]
+    },
+    {
+        "id": "56effb5b94c453c2",
+        "type": "change",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "proc",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.message:StructureSpecificData.message:DataSet[0].Series[0]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.{\t    'document': { \t        'id': 'FRA.HICP.2015',\t        'source': 'INSEE'\t    },\t    'metadata': `$`,\t    'observations': [ Obs.`$` ]\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 880,
+        "wires": [
+            [
+                "f0c8efece3d3b237"
+            ]
+        ]
+    },
+    {
+        "id": "b697979e0e7a738d",
+        "type": "http in",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "",
+        "url": "/api/hicp/fra",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "47dd6b6e12c7c75a"
+            ]
+        ]
+    },
+    {
+        "id": "f0c8efece3d3b237",
+        "type": "http response",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": ".json",
+        "statusCode": "",
+        "headers": {
+            "content-type": "application/json",
+            "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+            "pragma": "no-cache",
+            "expires": "0"
+        },
+        "x": 770,
+        "y": 880,
+        "wires": [],
+        "icon": "font-awesome/fa-check-square"
+    },
+    {
+        "id": "e5e4b5879099765a",
+        "type": "xml",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 490,
+        "y": 880,
+        "wires": [
+            [
+                "56effb5b94c453c2"
+            ]
+        ]
+    },
+    {
+        "id": "780ae32d4fec9efa",
+        "type": "http response",
+        "z": "2142850afa9fb6cf",
+        "name": "500!",
+        "statusCode": "500",
+        "headers": {},
+        "x": 750,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bee6a3839bf3e420",
+        "type": "catch",
+        "z": "2142850afa9fb6cf",
+        "name": "catch all",
+        "scope": "group",
+        "uncaught": false,
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "780ae32d4fec9efa",
+                "16a22edc9b968707"
+            ]
+        ]
+    },
+    {
+        "id": "dc96f53a8f71cbe8",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "name": "A simple catch-all exception handler",
+        "info": "",
+        "x": 660,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "22dc37b81fd4fa13",
+        "type": "inject",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "GO!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 920,
+        "wires": [
+            [
+                "47dd6b6e12c7c75a"
+            ]
+        ]
+    },
+    {
+        "id": "16a22edc9b968707",
+        "type": "debug",
+        "z": "2142850afa9fb6cf",
+        "name": "[catch-all]",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0191be0778224658",
+        "type": "debug",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "[bdm-xml]",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "4bb580419389ee62",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "g": "c12567373ad6819d",
+        "name": "<- the output is diabled!",
+        "info": "",
+        "x": 700,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "01cea471da2dcdd9",
+        "type": "comment",
+        "z": "2142850afa9fb6cf",
+        "name": "github.com/thielj/nodered-demo",
+        "info": "yhtyh\ntyhth\n\n\ntyhtrh\n",
+        "x": 190,
+        "y": 60,
         "wires": []
     }
 ]
