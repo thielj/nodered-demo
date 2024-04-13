@@ -10,10 +10,11 @@ RUN npm install --unsafe-perm --no-update-notifier --no-audit --no-fund --omit=d
 
 # Use default settings, but enable projects / git integration:
 #COPY settings.js /data/
-ENV NODE_RED_ENABLE_PROJECTS='true'
+ENV NODE_RED_ENABLE_PROJECTS true
 
 # Restore workdir the ENTRYPOINT expects this
 WORKDIR /usr/src/node-red
 
-LABEL org.label-schema.vcs-type="Git" \
+LABEL org.opencontainers.image.description="A containerized Node-RED app demo" \
+      org.label-schema.vcs-type="Git" \
       org.label-schema.vcs-url="https://github.com/thielj/nodered-demo"
