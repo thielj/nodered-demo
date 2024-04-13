@@ -1,0 +1,25 @@
+# https://github.com/compose-spec/compose-spec/blob/master/spec.md
+# sudo docker compose up -d [path/to/docker-compose.yml]
+
+# NOTE: You probably have to edit the proxy network and labels to match your
+#       reverse proxy setup.
+
+services:
+
+  nodered-demo:
+    image: "ghcr.io/thielj/nodered-demo"
+    user: "1000:1000"
+    expose: [ 1880 ]
+    #ports: [ "127.0.0.1:1880:1880" ] # only necessary if not reverse-proxied
+    networks:
+      default:
+      proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.nodered-demo.loadbalancer.server.port=1880"
+      - "traefik.http.routers.nodered-demo.entrypoints=https"
+      - "traefik.docker.network=proxy"
+
+networks:
+
+  proxy: { external: true }
