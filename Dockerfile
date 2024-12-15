@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest-18-minimal
+FROM nodered/node-red:latest-22-minimal
 
 # Override default files
 WORKDIR /data
